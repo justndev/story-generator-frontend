@@ -16,4 +16,6 @@ export const icons = {
     cross: '/assets/icons/cross.svg',
     arrowLeft: '/assets/icons/arrow-left.svg',
     arrowRight: '/assets/icons/arrow-right.svg',
+    play: '/assets/icons/play.svg',
+    pause: '/assets/icons/pause.svg',
 }

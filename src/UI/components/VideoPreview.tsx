@@ -1,8 +1,13 @@
 import {gifs} from "../../constants/gifs";
+import {useSelector} from "react-redux";
+import {RootState} from "../../utils/redux/store";
 
 const VideoPreview = () => {
+    const size = useSelector((state: RootState) => state.app.currentSize)
+
     const style: any = {
-        height: '500px',
+        height: size === 'large' ? 500 : size === 'medium' ? 350 : 350,
+
         borderRadius: '15px',
         boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)'
     };

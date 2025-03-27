@@ -1,34 +1,42 @@
 import React from 'react';
-import './styles.css';
-import './index.css';
-
-import {ThemeProvider} from "@mui/material";
+import {BrowserRouter as Router, Routes, Route, Navigate} from 'react-router-dom';
+import {Provider} from 'react-redux';
+import HomePage from './pages/HomePage';
+import {ThemeProvider, Box} from "@mui/material";
 import theme from "./hooks/theme";
-import TextButton from "./UI/components/buttons/TextButton";
-import FilledButton from "./UI/components/buttons/FilledButton";
-import LanguageDropdownMenu from "./UI/components/dropdowns/LanguageDropdownMenu";
-import AuthTextInput from "./UI/components/textInputs/textInputFabric";
-import StoryTextInput from "./UI/components/textInputs/StoryTextInput";
-import Footer from "./UI/components/Footer";
 import Header from "./UI/components/Header";
-import AuthForm from "./UI/components/forms/AuthForm";
-import VideoPreview from "./UI/components/VideoPreview";
-import PreviewCarousel from "./UI/components/PreviewCarousel";
-import ProgressBar from "./UI/components/ProgressBar";
-import AudioPlayer from "./UI/components/AudioPlayer";
+import ServicePage from "./pages/ServicePage";
+import AuthPage from "./pages/AuthPage";
+import ResultsPage from "./pages/ResultsPage";
+import PrivateRoute from "./UI/components/utilComponents/PrivateRoute";
+import store from "./utils/redux/store";
+import './index.css'
+import ResizeListener from "./UI/components/utilComponents/ResizeListener";
 
 function App() {
-  return (
-      <ThemeProvider theme={theme}>
-          <div className="app">
-              <Header/>
-              <AudioPlayer audioUrl={'./assets/music.mp3'} />
-              <Footer/>
-          </div>
-
-      </ThemeProvider>
-
-  );
+    return (
+        <Provider store={store}>
+            <Router>
+                <ThemeProvider theme={theme}>
+                    <Box display="flex" flexDirection="column" height="100vh">
+                        <Header />
+                        <Box component="main" flexGrow={1} height={'100%'}>
+                            <Routes>
+                                <Route path="/" element={<HomePage />} />
+                                <Route path="/service" element={<ServicePage />} />
+                                <Route path="/auth" element={<AuthPage />} />
+                                <Route element={<PrivateRoute />}>
+                                    <Route path="/results" element={<ResultsPage />} />
+                                </Route>
+                                <Route path="*" element={<Navigate to="/" replace />} />
+                            </Routes>
+                        </Box>
+                    </Box>
+                    <ResizeListener />
+                </ThemeProvider>
+            </Router>
+        </Provider>
+    );
 }
 
 export default App;

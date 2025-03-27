@@ -16,13 +16,13 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ audioUrl }) => {
         if (waveformRef.current) {
             wavesurferRef.current = WaveSurfer.create({
                 container: waveformRef.current,
-                waveColor: '#4F4A85',
+                waveColor: 'black',
                 progressColor: '#383351',
                 cursorColor: '#383351',
                 barWidth: 3,
                 barRadius: 3,
-                responsive: true,
-                height: 50,
+                width: 290,
+                height: 30,
                 normalize: true,
             });
 
@@ -42,15 +42,35 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ audioUrl }) => {
 
     const handlePlayPause = () => {
         if (wavesurferRef.current) {
+
             wavesurferRef.current.playPause();
         }
     };
 
     return (
-        <div style={{width:'300px', height:'20px'}}>
-            <div ref={waveformRef} />
+        <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', gap: '10px'}}>
+            <div>
+                <a style={{fontSize: '22px', fontWeight: '500', color: ''}}>Ashley</a>
 
+            </div>
+            <div style={{width:'360px', paddingRight: '10px', height:'51px', borderColor: 'black', borderWidth: '1px', borderRadius: '50px', display: 'flex', flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
+                <div style={{cursor:'pointer', height:'49px', width:'49px', backgroundColor: '#e3e3e3', borderRadius: '50px', justifyContent: 'center', alignItems: 'center', display: 'flex'}} onClick={handlePlayPause}>
+                    {isPlaying ?
+                        <div>
+                            <CustomIcon icon={icons.pause} size={100}/>
+
+                        </div>
+                        :
+                        <div style={{paddingLeft:'5px'}}>
+                            <CustomIcon icon={icons.play} />
+                        </div>
+                    }
+                </div>
+                <div ref={waveformRef} />
+
+            </div>
         </div>
+
     );
 };
 

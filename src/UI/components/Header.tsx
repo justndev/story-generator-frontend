@@ -18,6 +18,7 @@ const Header = () => {
 }
 
 const headerStyle: any = {
+    padding: '10px',
     backgroundColor: 'white',
     display: 'flex',
     flexDirection: 'row',

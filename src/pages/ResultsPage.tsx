@@ -1,4 +1,4 @@
-const ResultPage = () => {
+const ResultsPage = () => {
     return (
         <div>
 
@@ -6,4 +6,4 @@ const ResultPage = () => {
     )
 }
 
-export default ResultPage;
+export default ResultsPage;
