@@ -4,6 +4,7 @@ const appSlice = createSlice({
     name: 'app',
     initialState: {
         currentSize: 'large',
+        currentPage: 'home',
     },
     reducers: {
         changeSize: (state, action) => {
@@ -15,9 +16,12 @@ const appSlice = createSlice({
             }
             else state.currentSize = 'large';
 
+        },
+        changePage: (state, action) => {
+            state.currentPage = action.payload;
         }
     }
 });
 
-export const { changeSize } = appSlice.actions;
+export const { changeSize, changePage } = appSlice.actions;
 export default appSlice.reducer;

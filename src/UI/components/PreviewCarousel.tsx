@@ -15,20 +15,20 @@ const SlidingCarousel: React.FC<SlidingCarouselProps> = ({
     const [activeIndex, setActiveIndex] = useState(Math.floor(children.length / 2));
     const [transitioning, setTransitioning] = useState(false);
     const trackRef = useRef<HTMLDivElement>(null);
-    const [visibleItems, setVisibleItems] = useState(5)
+    const [visibleItems, setVisibleItems] = useState(3)
     const {width} = useWindowDimensions();
 
-    useEffect(()=> {
-        if (width > 1500) {
-            setVisibleItems(5)
-        } else if (width > 800) {
-            setVisibleItems(3)
-        } else {
-            setVisibleItems(1)
-        }
-    }, [width]);
+    // useEffect(()=> {
+    //     if (width > 1500) {
+    //         setVisibleItems(5)
+    //     } else if (width > 800) {
+    //         setVisibleItems(3)
+    //     } else {
+    //         setVisibleItems(1)
+    //     }
+    // }, [width]);
     // Calculate item width based on visible items
-    const itemWidth = 100 / visibleItems;
+    const itemWidth = 130 / visibleItems;
 
     // Calculate the translation amount to center the active item
     const getTranslateX = () => {
@@ -63,7 +63,7 @@ const SlidingCarousel: React.FC<SlidingCarouselProps> = ({
     const containerStyle: React.CSSProperties = {
         position: 'relative',
         width: '100%',
-        height: '800px',
+        height: '650px',
         overflow: 'hidden',
         padding: '0 20px',
     };

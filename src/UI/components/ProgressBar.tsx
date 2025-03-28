@@ -8,7 +8,7 @@ function LinearProgressWithLabel(props: LinearProgressProps & { value: number })
     // @ts-ignore
     return (
         <Box sx={{ display: 'flex', alignItems: 'center' }}>
-            <Box sx={{ width: '50%', mr: 1 }}>
+            <Box sx={{ width: '100%', mr: 1 }}>
                 {/* @ts-ignore*/}
                 <LinearProgress variant="determinate" {...props} sx={{height: '20px', borderRadius: '10px'}} color={'greeny'} />
             </Box>
