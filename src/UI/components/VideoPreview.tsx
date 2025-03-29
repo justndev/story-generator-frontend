@@ -2,7 +2,7 @@ import {gifs} from "../../constants/gifs";
 import {useSelector} from "react-redux";
 import {RootState} from "../../utils/redux/store";
 
-const VideoPreview = () => {
+const VideoPreview = ({src=gifs.sample}:{src?: string}) => {
     const size = useSelector((state: RootState) => state.app.currentSize)
 
     const style: any = {
@@ -13,7 +13,7 @@ const VideoPreview = () => {
     };
 
     return (
-        <img src={gifs.sample} alt="Animated GIF" style={style} />
+        <img src={src} alt="Animated GIF" style={style} />
     )
 }
 

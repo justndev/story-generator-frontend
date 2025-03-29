@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import useWindowDimensions from "../../hooks/useWindowDimensions";
 import CustomIcon from "./CustomIcon";
 import {icons} from "../../constants/icons";
@@ -6,11 +6,13 @@ import {icons} from "../../constants/icons";
 interface SlidingCarouselProps {
     children: React.ReactNode[];
     transitionDuration?: number;
+    onChange: (index: number) => void;
 }
 
 const SlidingCarousel: React.FC<SlidingCarouselProps> = ({
                                                              children,
                                                              transitionDuration = 300,
+                                                             onChange = () => {}
                                                          }) => {
     const [activeIndex, setActiveIndex] = useState(Math.floor(children.length / 2));
     const [transitioning, setTransitioning] = useState(false);
@@ -42,6 +44,7 @@ const SlidingCarousel: React.FC<SlidingCarouselProps> = ({
 
         setTransitioning(true);
         setActiveIndex(activeIndex - 1);
+        onChange(activeIndex - 1);
 
         setTimeout(() => {
             setTransitioning(false);
@@ -111,11 +114,11 @@ const SlidingCarousel: React.FC<SlidingCarouselProps> = ({
     return (
         <div style={containerStyle}>
             <button
-                style={{ ...buttonStyle, left: '10px' }}
+                style={{...buttonStyle, left: '10px'}}
                 onClick={handlePrev}
                 disabled={transitioning || activeIndex === 0}
             >
-                <CustomIcon icon={icons.arrowLeft} />
+                <CustomIcon icon={icons.arrowLeft}/>
 
             </button>
 
@@ -142,11 +145,11 @@ const SlidingCarousel: React.FC<SlidingCarouselProps> = ({
             </div>
 
             <button
-                style={{ ...buttonStyle, right: '10px' }}
+                style={{...buttonStyle, right: '10px'}}
                 onClick={handleNext}
                 disabled={transitioning || activeIndex === children.length - 1}
             >
-                <CustomIcon icon={icons.arrowRight} />
+                <CustomIcon icon={icons.arrowRight}/>
             </button>
         </div>
     );

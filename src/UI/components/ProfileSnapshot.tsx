@@ -3,10 +3,15 @@ import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Typography from "@mui/material/Typography";
 import {useState} from "react";
-const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
+import {useDispatch, useSelector} from "react-redux";
+import {RootState} from "../../utils/redux/store";
+import {logout} from "../../utils/redux/userSlice";
+
 
 const ProfileSnapshot = () => {
     const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
+    const user = (useSelector((state: RootState) => state.user.user));
+    const dispatch = useDispatch();
 
     const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
         setAnchorElUser(event.currentTarget);
@@ -14,15 +19,20 @@ const ProfileSnapshot = () => {
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
     };
+    const handleLogout = () => {
+        setAnchorElUser(null);
+        dispatch(logout());
+    }
+
     return (
-        <Box sx={{ flexGrow: 0 }}>
+        <Box sx={{flexGrow: 0}}>
             <Tooltip title="Open settings">
-                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                    <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                <IconButton onClick={handleOpenUserMenu} sx={{p: 0}}>
+                    <Avatar alt={`${user?.firstName} ${user?.lastName}`} src="/static/images/avatar/2.jpg"/>
                 </IconButton>
             </Tooltip>
             <Menu
-                sx={{ mt: '45px' }}
+                sx={{mt: '45px'}}
                 id="menu-appbar"
                 anchorEl={anchorElUser}
                 anchorOrigin={{
@@ -37,11 +47,14 @@ const ProfileSnapshot = () => {
                 open={Boolean(anchorElUser)}
                 onClose={handleCloseUserMenu}
             >
-                {settings.map((setting) => (
-                    <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                        <Typography sx={{ textAlign: 'center' }}>{setting}</Typography>
-                    </MenuItem>
-                ))}
+                <MenuItem key={'logout'} onClick={handleLogout}>
+                    <Typography sx={{textAlign: 'center'}}>{'Log out'}</Typography>
+                </MenuItem>
+                {/*{settings.map((setting) => (*/}
+                {/*    <MenuItem key={setting} onClick={handleCloseUserMenu}>*/}
+                {/*        <Typography sx={{textAlign: 'center'}}>{setting}</Typography>*/}
+                {/*    </MenuItem>*/}
+                {/*))}*/}
             </Menu>
         </Box>
     )

@@ -7,10 +7,12 @@ interface TextButtonProps {
     selected?: boolean;
     styles?: string;
     color?: string;
+    children?: React.ReactNode;
 }
 
 export default function TextButton({
                                        label = "BUTTON",
+                                       children = null,
                                        onClick = () => {},
                                        selected = false,
                                        color = 'black',
@@ -20,7 +22,7 @@ export default function TextButton({
     return (
         <div className={`text-button-container-${color}`} onClick={onClick}>
             <a className={`text-button-${selected ? 'selected' : 'label'}-${color}`} onClick={onClick}>
-                {label}
+                {children ? children : label}
             </a>
         </div>
 

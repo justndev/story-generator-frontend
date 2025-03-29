@@ -1,6 +1,3 @@
-import MenuItem from "@mui/material/MenuItem";
-import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
 import * as React from "react";
 import TextButton from "./buttons/TextButton";
 import LanguageDropdownMenu from "./dropdowns/LanguageDropdownMenu";
@@ -8,14 +5,17 @@ import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../utils/redux/store";
 import {changePage} from "../../utils/redux/appSlice";
 import { useNavigate } from "react-router-dom";
+import ProfileSnapshot from "./ProfileSnapshot";
 
 const isMobile = false
 
 const Header = () => {
-    const size = useSelector((state: RootState) => state.app.currentSize);
     const navigate = useNavigate();
     const dispatch = useDispatch();
+
     const currentPage = useSelector((state:RootState) => state.app.currentPage)
+    const size = useSelector((state: RootState) => state.app.currentSize);
+    const user = useSelector((state: RootState) => state.user.user);
 
     const headerStyle: any = {
         zIndex: 999,
@@ -43,12 +43,26 @@ const Header = () => {
             dispatch(changePage("auth"));
         }
     }
+    function handleService() {
+        if (currentPage !== 'service') {
+            navigate('/service');
+            dispatch(changePage("service"));
+        }
+    }
 
     return (
         <div style={headerStyle}>
             <TextButton label={"Home"} onClick={handleHome} selected={currentPage === 'home'} />
             <LanguageDropdownMenu open={true}/>
-            <TextButton label={"Start Using"} onClick={handleAuth} selected={currentPage === 'auth'}/>
+            {user ?
+                <>
+                    <TextButton label={"Generator"} onClick={handleService} selected={currentPage === 'service'}/>
+                    <ProfileSnapshot/>
+
+                </>
+            :
+                <TextButton label={"Start Using"} onClick={handleAuth} selected={currentPage === 'auth'}/>
+            }
         </div>
     )
 }
