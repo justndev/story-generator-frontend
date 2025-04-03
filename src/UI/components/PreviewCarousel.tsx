@@ -32,7 +32,7 @@ const SlidingCarousel: React.FC<SlidingCarouselProps> = ({
     // Calculate item width based on visible items
     const itemWidth = 130 / visibleItems;
 
-    // Calculate the translation amount to center the active item
+    // Calculate the i18n amount to center the active item
     const getTranslateX = () => {
         const centerPosition = 50 - itemWidth / 2;
         const offset = activeIndex * itemWidth;
@@ -56,6 +56,8 @@ const SlidingCarousel: React.FC<SlidingCarouselProps> = ({
 
         setTransitioning(true);
         setActiveIndex(activeIndex + 1);
+        onChange(activeIndex + 1);
+
 
         setTimeout(() => {
             setTransitioning(false);

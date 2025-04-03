@@ -12,7 +12,7 @@ import PrivateRoute from "./UI/components/utilComponents/PrivateRoute";
 import store from "./utils/redux/store";
 import './index.css'
 import ResizeListener from "./UI/components/utilComponents/ResizeListener";
-import ScrollablePage from "./pages/HomePage";
+import LocalStorageListener from "./UI/components/utilComponents/LocalStorageListener";
 
 function App() {
     return (
@@ -22,17 +22,16 @@ function App() {
                         <Header/>
                         <Routes>
                             <Route path="/" element={<HomePage/>}/>
-                            <Route path="/service" element={<ServicePage/>}/>
                             <Route path="/auth" element={<AuthPage/>}/>
-                            <Route path="/results" element={<ResultsPage/>}/>
 
-                            {/*<Route element={<PrivateRoute/>}>*/}
-                            {/*    <Route path="/results" element={<ResultsPage/>}/>*/}
-                            {/*    <Route path="/service" element={<ServicePage/>}/>*/}
-                            {/*</Route>*/}
+                            <Route element={<PrivateRoute/>}>
+                                <Route path="/results" element={<ResultsPage/>}/>
+                                <Route path="/service" element={<ServicePage/>}/>
+                            </Route>
                             <Route path="*" element={<Navigate to="/" replace/>}/>
                         </Routes>
                     <ResizeListener/>
+                    <LocalStorageListener/>
                 </ThemeProvider>
             </Router>
         </Provider>

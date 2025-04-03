@@ -1,5 +1,7 @@
 import {OutlinedInput, FormControl, FormHelperText, TextField} from "@mui/material";
-import {Dispatch, SetStateAction, useEffect} from "react";
+import {Dispatch, SetStateAction, useEffect, useContext} from "react";
+import { useTranslation } from 'react-i18next';
+
 
 export default function textInputFabric(
     value: string,
@@ -17,7 +19,7 @@ export default function textInputFabric(
         case "firstName":
             return <AuthInputFirstName value={value} onChange={onChange} error={error} />;
         case "lastName":
-            return <AuthInputFirstName value={value} onChange={onChange} error={error} />;
+            return <AuthInputLastName value={value} onChange={onChange} error={error} />;
         case "storyInput":
             return <StoryInput value={value} onChange={onChange} error={error} />;
         default:
@@ -34,13 +36,15 @@ const AuthTextInputEmail = ({
     onChange: any;
     error?: string;
 }) => {
+    const {t} : {t:(arg: string) => string} = useTranslation();
+
     return (
         <FormControl error={!!error} variant="outlined" size="small">
             <OutlinedInput
                 value={value}
                 onChange={(e) => onChange(e.target.value)}
                 id="outlined-error-helper-text"
-                placeholder="Type your email"
+                placeholder={t('placeholders.email')}
                 aria-describedby="component-error-text"
             />
             <FormHelperText sx={{ minHeight: "20px" }} id="component-error-text">
@@ -59,13 +63,15 @@ const AuthInputFirstName = ({
     onChange: any;
     error?: string;
 }) => {
+    const {t} : {t:(arg: string) => string} = useTranslation();
+
     return (
         <FormControl error={!!error} variant="outlined" size="small">
             <OutlinedInput
                 value={value}
                 onChange={(e) => onChange(e.target.value)}
                 id="outlined-error-helper-text"
-                placeholder="Type your first name"
+                placeholder={t('placeholders.firstName')}
                 aria-describedby="component-error-text"
             />
             <FormHelperText sx={{ minHeight: "20px" }} id="component-error-text">
@@ -75,22 +81,24 @@ const AuthInputFirstName = ({
     );
 };
 
-const AuthLastName = ({
-                                value,
-                                onChange,
-                                error,
-                            }: {
+const AuthInputLastName = ({
+                               value,
+                               onChange,
+                               error,
+                           }: {
     value: string;
     onChange: any;
     error?: string;
 }) => {
+    const {t} : {t:(arg: string) => string} = useTranslation();
+
     return (
         <FormControl error={!!error} variant="outlined" size="small">
             <OutlinedInput
                 value={value}
                 onChange={(e) => onChange(e.target.value)}
                 id="outlined-error-helper-text"
-                placeholder="Type your last name"
+                placeholder={t('placeholders.lastName')}
                 aria-describedby="component-error-text"
             />
             <FormHelperText sx={{ minHeight: "20px" }} id="component-error-text">
@@ -109,6 +117,8 @@ const AuthTextInputPass = ({
     onChange: Dispatch<SetStateAction<string>>;
     error?: string;
 }) => {
+    const {t} : {t:(arg: string) => string} = useTranslation();
+
     return (
         <FormControl error={!!error} variant="outlined" size="small">
             <OutlinedInput
@@ -116,7 +126,7 @@ const AuthTextInputPass = ({
                 type="password"
                 onChange={(e) => onChange(e.target.value)}
                 id="outlined-error-helper-text"
-                placeholder="Type your password"
+                placeholder={t('placeholders.password')}
                 aria-describedby="component-error-text"
             />
             <FormHelperText sx={{ minHeight: "20px" }} id="component-error-text">
@@ -135,6 +145,8 @@ const AuthTextPassConfirm = ({
     onChange: Dispatch<SetStateAction<string>>;
     error?: string;
 }) => {
+    const {t} : {t:(arg: string) => string} = useTranslation();
+
     return (
         <FormControl error={!!error} variant="outlined" size="small">
             <OutlinedInput
@@ -142,7 +154,7 @@ const AuthTextPassConfirm = ({
                 type="password"
                 onChange={(e) => onChange(e.target.value)}
                 id="outlined-error-helper-text"
-                placeholder="Confirm your password"
+                placeholder={t('placeholders.confirmPassword')}
                 aria-describedby="component-error-text"
             />
             <FormHelperText sx={{ minHeight: "20px" }} id="component-error-text">
@@ -153,21 +165,23 @@ const AuthTextPassConfirm = ({
 };
 
 const StoryInput = ({
-                                 value,
-                                 onChange,
-                                 error,
-                             }: {
+                        value,
+                        onChange,
+                        error,
+                    }: {
     value: string;
     onChange: Dispatch<SetStateAction<string>>;
     error?: string;
 }) => {
+    const {t} : {t:(arg: string) => string} = useTranslation();
+
     return (
         <FormControl error={!!error} variant="outlined" size="small" sx={{width:'100%'}}>
             <OutlinedInput
                 value={value}
                 onChange={(e) => onChange(e.target.value)}
                 id="outlined-error-helper-text"
-                placeholder="Write any text you want"
+                placeholder={t('placeholders.storyInput')}
                 aria-describedby="component-error-text"
                 sx={{width:'100%'}}
                 multiline

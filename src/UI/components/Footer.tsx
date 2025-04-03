@@ -1,12 +1,11 @@
 import TextButton from "./buttons/TextButton";
-import {useMediaQuery} from "@mui/material";
-import {useEffect} from "react";
+import {useTranslation} from "react-i18next";
 
 const isMobile = true;
 
 const Footer = ({textColor = 'black'}:{textColor?: string}) => {
+    const {t}: {t: (arg: string) => string} = useTranslation();
     return (
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         // @ts-ignore
         <div style={footerStyles}>
 
@@ -15,8 +14,8 @@ const Footer = ({textColor = 'black'}:{textColor?: string}) => {
             </div>
 
             {/* Regular buttons */}
-            <TextButton label={'Privacy Policy'} color={textColor} />
-            <TextButton label={'Terms of Use'} color={textColor} />
+            <TextButton label={t('privacyPolicy')} color={textColor} />
+            <TextButton label={t('termsOfUse')} color={textColor} />
         </div>
     );
 }

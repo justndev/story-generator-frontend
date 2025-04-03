@@ -6,10 +6,12 @@ import {RootState} from "../../utils/redux/store";
 import {changePage} from "../../utils/redux/appSlice";
 import { useNavigate } from "react-router-dom";
 import ProfileSnapshot from "./ProfileSnapshot";
+import {useTranslation} from "react-i18next";
 
 const isMobile = false
 
 const Header = () => {
+    const {t} : {t:(arg:string) => string} = useTranslation();
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -52,16 +54,16 @@ const Header = () => {
 
     return (
         <div style={headerStyle}>
-            <TextButton label={"Home"} onClick={handleHome} selected={currentPage === 'home'} />
+            <TextButton label={t('home')} onClick={handleHome} selected={currentPage === 'home'} />
             <LanguageDropdownMenu open={true}/>
             {user ?
                 <>
-                    <TextButton label={"Generator"} onClick={handleService} selected={currentPage === 'service'}/>
+                    <TextButton label={t('generator')} onClick={handleService} selected={currentPage === 'service'}/>
                     <ProfileSnapshot/>
 
                 </>
             :
-                <TextButton label={"Start Using"} onClick={handleAuth} selected={currentPage === 'auth'}/>
+                <TextButton label={t('startUsing')} onClick={handleAuth} selected={currentPage === 'auth'}/>
             }
         </div>
     )

@@ -34,5 +34,20 @@
   "echoVoice": "Echo",
   "sageVoice": "Sage",
   "shimmerVoice": "Shimmer",
-  "generate": "Loo!"
+  "generate": "Loo!",
+  "loginShort": "Login",
+  "signupShort": "Registreeru",
+  "logout": "Logi välja",
+  "placeholders": {
+    "email": "Sisesta e-post",
+    "password": "Sisesta parool",
+    "confirmPassword": "Kinnita parool",
+    "firstName": "Sisesta eesnimi",
+    "lastName": "Sisesta perenimi",
+    "storyInput": "Kirjuta siin lugu"
+  },
+  "done": "Valmis!",
+  "inProgress": "Käimas",
+  "yourAdHere": "Teie reklaam siin",
+  "download": "Laadi alla"
 }

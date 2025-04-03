@@ -6,20 +6,60 @@ import FormControl from '@mui/material/FormControl';
 import Select, {SelectChangeEvent} from '@mui/material/Select';
 import {MenuProps} from "@mui/material";
 import {useEffect, useState} from "react";
+import {useTranslation} from "react-i18next";
 
 export default function LanguageDropdownMenu(props: MenuProps) {
     const [language, setLanguage] = useState('');
+    const {i18n} = useTranslation();
 
     const handleChange = (event: SelectChangeEvent) => {
         setLanguage(event.target.value);
-        // TODO: change system language
+        switch (event.target.value) {
+            // @ts-ignore
+            case 20:
+                localStorage.setItem('userLanguage', "ru");
+                i18n.changeLanguage("ru");
+                break;
+            // @ts-ignore
+            case 30:
+                localStorage.setItem('userLanguage', "ee");
+                i18n.changeLanguage("ee");
+                break;
+            // @ts-ignore
+            case '':
+                localStorage.setItem('userLanguage', "en");
+                i18n.changeLanguage("en");
+                break;
+        }
     };
 
+    function getFirstLanguage() {
+        const userLanguage = localStorage.getItem('userLanguage');
+        if (userLanguage) {
+            switch (userLanguage) {
+                case 'en':
+                    return '';
+                case 'ru':
+                    return 20;
+                case 'ee':
+                    return 30;
+            }
+        }
+        return '';
+    }
+
     return (
-        <div style={{height: 40, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
+        <div style={{
+            height: 40,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center'
+        }}>
             <FormControl sx={{m: 2, minWidth: 120}} size="small">
                 <Select
-                    value={language}
+                    // @ts-ignore
+                    value={getFirstLanguage()}
                     onChange={handleChange}
                     displayEmpty
                     inputProps={{'aria-label': 'Without label'}}
@@ -39,7 +79,7 @@ export default function LanguageDropdownMenu(props: MenuProps) {
                         },
                     }}
                 >
-                    <MenuItem value="">
+                    <MenuItem value={''}>
                         English
                     </MenuItem>
                     <MenuItem value={20}>Русский</MenuItem>

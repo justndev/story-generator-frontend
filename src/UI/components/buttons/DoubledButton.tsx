@@ -1,7 +1,9 @@
 import {Button} from "@mui/material";
 import {Dispatch, SetStateAction, useState} from "react";
+import {useTranslation} from "react-i18next";
 
 const DoubledFormButton = ({isLogInOpened = false, onChange = () => null}:{isLogInOpened: boolean, onChange: () => void}) => {
+    const { t }: {t: (arg: string) => string} = useTranslation();  // Initialize i18n function
 
     return (
         <div style={{display: 'flex', alignItems: 'center', width: '100%'}}>
@@ -13,7 +15,7 @@ const DoubledFormButton = ({isLogInOpened = false, onChange = () => null}:{isLog
                 sx={{width: '100%'}}
                 color="primary"
             >
-                Log In
+                {t('loginShort')}
             </Button>
             <Button
                 sx={{width: '100%'}}
@@ -23,7 +25,7 @@ const DoubledFormButton = ({isLogInOpened = false, onChange = () => null}:{isLog
                 size="large"
                 color="primary"
             >
-                Sign Up
+                {t('signupShort')}
             </Button>
         </div>
 

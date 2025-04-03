@@ -1,8 +1,7 @@
 import axios from "axios";
-
-const BACKEND_API = 'http://localhost:8080';
-const LOGIN_ENDPOINT = "/api/auth/login";
-const SIGNUP_ENDPOINT = "/api/auth/signup";
+const BACKEND_API = 'http://51.21.246.83/api';
+const LOGIN_ENDPOINT = "/auth/login";
+const SIGNUP_ENDPOINT = "/auth/signup";
 
 
 class AuthApi {
@@ -21,12 +20,6 @@ class AuthApi {
     }
 
     async signup(email: string, firstName: string, lastName: string, password: string) {
-        // try {
-        //     const response = await axios.get(`${BACKEND_API}/api/auth/check`)
-        //     console.log(response.data);
-        //
-        // } catch (e) {
-        // }
         try {
             const response = await axios.post(`${BACKEND_API}${SIGNUP_ENDPOINT}`, {
                 email,

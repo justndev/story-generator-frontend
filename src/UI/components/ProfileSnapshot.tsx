@@ -6,9 +6,13 @@ import {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../utils/redux/store";
 import {logout} from "../../utils/redux/userSlice";
+import {useTranslation} from "react-i18next";
+import {changePage} from "../../utils/redux/appSlice";
 
 
 const ProfileSnapshot = () => {
+    const { t }: {t: (arg: string) => string} = useTranslation();  // Initialize i18n function
+
     const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
     const user = (useSelector((state: RootState) => state.user.user));
     const dispatch = useDispatch();
@@ -18,9 +22,19 @@ const ProfileSnapshot = () => {
     };
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
+        console.log(`user`)
+
+        console.log(user)
     };
     const handleLogout = () => {
         setAnchorElUser(null);
+
+        localStorage.removeItem("email")
+        localStorage.removeItem("firstName")
+        localStorage.removeItem("lastName")
+        localStorage.removeItem("jwt")
+
+        dispatch(changePage('auth'))
         dispatch(logout());
     }
 
@@ -48,7 +62,7 @@ const ProfileSnapshot = () => {
                 onClose={handleCloseUserMenu}
             >
                 <MenuItem key={'logout'} onClick={handleLogout}>
-                    <Typography sx={{textAlign: 'center'}}>{'Log out'}</Typography>
+                    <Typography sx={{textAlign: 'center'}}>{t('logout')}</Typography>
                 </MenuItem>
                 {/*{settings.map((setting) => (*/}
                 {/*    <MenuItem key={setting} onClick={handleCloseUserMenu}>*/}
