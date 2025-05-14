@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BACKEND_API = 'http://51.21.246.83/api';
+const BACKEND_API = 'https://storygen.xyz/api';
 const GENERATE_ENDPOINT = '/story/generate';
 const STATUS_ENDPOINT = '/story/status';
 const DOWNLOAD_ENDPOINT = '/story/download';
