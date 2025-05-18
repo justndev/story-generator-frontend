@@ -2,7 +2,7 @@
 
 A React-based frontend application for the Story Generator project that allows users to create short narrated videos with customizable backgrounds and voices. This frontend works together with the Spring Boot backend service and Flask-based microservice for a complete video generation experience.
 
-![User Flow](./assets/designs/userflow.jpg)
+![User Flow](./public/assets/designs/userflow.jpg)
 
 ## 🚀 Features
 
@@ -97,13 +97,13 @@ The frontend communicates with these services to provide a seamless experience:
 ## 📸 Pages
 
 ### Home Page
-![Home Page](./assets/designs/home.jpg)
+![Home Page](./public/assets/designs/home.jpg)
 
 ### Video Creation
-![Video Creation](./assets/designs/service.jpg)
+![Video Creation](./public/assets/designs/service.jpg)
 
 ### Results Page
-![Results Page](./assets/designs/result.jpg)
+![Results Page](./public/assets/designs/result.jpg)
 
 ## 🎨 Design
 
