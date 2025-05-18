@@ -1,46 +1,129 @@
-# Getting Started with Create React App
+# Story Generator Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A React-based frontend application for the Story Generator project that allows users to create short narrated videos with customizable backgrounds and voices. This frontend works together with the Spring Boot backend service and Flask-based microservice for a complete video generation experience.
 
-## Available Scripts
+![User Flow](./assets/designs/userflow.jpg)
 
-In the project directory, you can run:
+## 🚀 Features
 
-### `npm start`
+- **User Authentication** - Complete user flow with signup, email verification, and login
+- **Multi-language Support** - Interface available in English, Russian, and Estonian
+- **Video Creation** - Generate narrated videos with custom text and background
+- **Voice Selection** - Choose from multiple AI voice options for narration
+- **Background Video Selection** - Choose from multiple attractive video
+- **Real-time Progress Tracking** - Monitor video generation status
+- **Responsive Design** - Works on desktop and mobile devices
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## 📁 Project Structure
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+```
+story-generator-frontend/
+├── node_modules         # Dependencies
+├── src                  # Source code
+│   ├── api              # API communication services
+│   │   ├── AuthApi.ts   # Authentication API
+│   │   └── ServiceApi.ts # Video generation API
+│   ├── assets           # Static assets
+│   ├── constants        # Application constants
+│   │   ├── gifs.ts      # Animation assets
+│   │   ├── icons.ts     # UI icons
+│   │   ├── snaps.ts     # Snapshot references
+│   │   └── voices.ts    # Available voice options
+│   ├── hooks            # Custom React hooks
+│   ├── i18n             # Internationalization
+│   │   ├── config.js    # i18n configuration
+│   │   ├── en.json      # English translations
+│   │   ├── ru.json      # Russian translations
+│   │   └── ee.json      # Estonian translations
+│   ├── pages            # Application pages
+│   │   ├── AuthPage.tsx # Login/signup page
+│   │   ├── HomePage.tsx # Main landing page
+│   │   ├── ResultsPage.tsx # Video results page
+│   │   └── ServicePage.tsx # Video creation page
+│   ├── UI               # UI components
+│   │   ├── components   # Reusable UI components
+│   │   │   ├── animated # Animation components
+│   │   │   ├── buttons  # Button components
+│   │   │   ├── dropdowns # Dropdown menus
+│   │   │   ├── forms    # Form components
+│   │   │   ├── labels   # Text label components
+│   │   │   ├── textInputs # Input field components
+│   │   │   └── utilComponents # Utility components
+│   ├── utils            # Utility functions
+│   │   ├── redux        # State management
+│   │   │   ├── appSlice.ts # App-wide state
+│   │   │   ├── store.ts # Redux store
+│   │   │   └── userSlice.ts # User state
+│   │   ├── apiUtil.ts   # API utilities
+│   │   ├── authUtil.ts  # Authentication utilities
+│   │   └── fileUtil.ts  # File handling utilities
+│   ├── App.tsx          # Main application component
+│   └── index.tsx        # Application entry point
+```
 
-### `npm test`
+## 🔧 Installation
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. **Clone the repository**
+```bash
+git clone https://github.com/justndev/story-generator-frontend.git
+cd story-generator-frontend
+```
 
-### `npm run build`
+2. **Install dependencies**
+```bash
+npm install
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+3. **Run the application**
+```bash
+npm start
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+The application will be available at `http://localhost:3000`.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 🔄 Integration with Backend Services
 
-### `npm run eject`
+This React application works with two backend services:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+1. **Spring Boot Backend** - Handles authentication, user management, and coordinates video generation requests
+2. **Flask Microservice API** - Processes the actual video generation with AI voice synthesis
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+The frontend communicates with these services to provide a seamless experience:
+- User registers and logs in via the Spring Boot backend
+- Video generation requests are sent through the Spring Boot backend
+- The backend delegates processing to the Flask microservice
+- The frontend polls for status updates and retrieves completed videos
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## 📸 Pages
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Home Page
+![Home Page](./assets/designs/home.jpg)
 
-## Learn More
+### Video Creation
+![Video Creation](./assets/designs/service.jpg)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Results Page
+![Results Page](./assets/designs/result.jpg)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 🎨 Design
+
+View the complete design in [Figma](https://www.figma.com/design/rWcvmb2AqLqM7sdSspf3TI/Short-Video-Builder?node-id=0-1&p=f&t=i1KcojzPZMuFaAvy-0).
+
+## 🧩 Related Projects
+
+### Backend Service
+The Spring Boot backend service handles authentication, email confirmation, video generation requests, and file management. [View Backend Repository](https://github.com/justndev/story-generator-backend)
+
+### Video Generation Microservice
+The Flask-based microservice processes the actual video generation with OpenAI text-to-speech and FFmpeg. [View Microservice Repository](https://github.com/justndev/story-generator-flask-script-api)
+
+## 📦 Requirements
+
+- Node.js 14.x+
+- npm 6.x+
+- Modern web browser
+- The backend services must be running (see companion READMEs)
+
+## 📝 License
+
+MIT License
